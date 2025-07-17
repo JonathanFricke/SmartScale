@@ -115,14 +115,17 @@ void InternetClient::postWeightTask(void *param) {
     Serial.print("statusCode");
     Serial.println(statusCode);
     Serial.print("responseBody");
-    Serial.println(httpClient.responseBody());
+    String response = httpClient.responseBody();
+    Serial.println(response);
+
+    if (statusCode == 200 || response.indexOf("\"status\":\"success\"") != -1)
+      break; // Success
+
     if (statusCode < 0) {
       Serial.print("HTTP POST failed with error: ");
       Serial.println(httpClient.getWriteError());
     }
 
-    if (statusCode == 200)
-      break; // Success
     attempt++;
     delay(POST_RETRY_DELAY_MS);
   }
