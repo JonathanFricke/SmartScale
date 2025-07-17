@@ -39,7 +39,7 @@ SmartScale is a smart IoT weight scale project based on ESP32 and Flask, designe
 	5.3 Create TLS certificates, run the following command to generate a self-signed certificate and private key
 	
 	```bash
-	openssl req -x509 -newkey rsa:2048 -keyout certs/key.pem -out certs/cert.pem -days 3650 -nodes
+	openssl req -x509 -newkey rsa:2048 -keyout certs/key.pem -out certs/cert.pem -days 3650 -nodes -subj "/CN=localhost"
 	```
 
 	>⚠️ We need `cert.pem` content later for ESP32
