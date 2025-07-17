@@ -36,10 +36,12 @@ SmartScale is a smart IoT weight scale project based on ESP32 and Flask, designe
 
 	5.2 Fill in your SSID, Wi-Fi password, and custom API-key.
 
-	5.3 Create TLS certificates, run the following command to generate a self-signed certificate and private key
+	5.3 Fill in server IP-address in `cert.conf`.
+
+	5.3 Create TLS certificates, run the following command to generate a self-signed certificate and private key based on `cert.conf`.
 
 	```bash
-	openssl req -x509 -newkey rsa:2048 -keyout certs/key.pem -out certs/cert.pem -days 3650 -nodes -subj "/CN=localhost"
+	openssl req -x509 -newkey rsa:2048 -keyout certs/key.pem -out certs/cert.pem -days 3650 -nodes -config cert.conf -extensions v3_req
 	```
 
 	>⚠️ We need `cert.pem` content later for ESP32
@@ -61,7 +63,17 @@ This is a firmware project for [PlatformIO](https://platformio.org/), designed f
 
 	2.2 Fill in your Garmin account credentials and the same API key used in the backend `.env` file.
 
-	2.3 Copy content of the server `certs/cert.pem` into `ROOT_CA`
+	2.3 Copy content of the server `certs/cert.pem` with linebreaks `\n` into `ROOT_CA`
+
+	Example:
+	```bash
+	constexpr const char *ROOT_CA =
+	"-----BEGIN CERTIFICATE-----\n"
+	"MIIFBTCCAu2gAwIBAgIQS6hSk/eaL6JzBkuoBI110DANBgkqhkiG9w0BAQsFADBP\n"
+		...
+	"KPpdzvvtTnOPlC7SQZSYmdunr3Bf9b77AiC/ZidstK36dRILKz7OA54=\n"
+	"-----END CERTIFICATE-----";
+	```
 
 	> ⚠️ If the certificate doesn't work, set `SSL_INSECURE=true`. This disables certificate verification and is a **security risk** — use only at your own risk!
 
