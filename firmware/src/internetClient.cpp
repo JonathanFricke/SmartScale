@@ -93,7 +93,7 @@ void InternetClient::postWeightTask(void *param) {
   if (SSL_INSECURE) {
     sslClient.setInsecure();
   } else {
-    sslClient.setCACert(root_ca);
+    sslClient.setCACert(ROOT_CA);
   }
   HttpClient httpClient(sslClient, SERVER_IP, HTTPS_PORT);
   httpClient.setHttpResponseTimeout(5000);
