@@ -37,7 +37,7 @@ SmartScale is a smart IoT weight scale project based on ESP32 and Flask, designe
 	5.2 Fill in your SSID, Wi-Fi password, and custom API-key.
 
 	5.3 Create TLS certificates, run the following command to generate a self-signed certificate and private key
-	
+
 	```bash
 	openssl req -x509 -newkey rsa:2048 -keyout certs/key.pem -out certs/cert.pem -days 3650 -nodes -subj "/CN=localhost"
 	```
@@ -60,7 +60,7 @@ This is a firmware project for [PlatformIO](https://platformio.org/), designed f
 	2.1 Create `secret.h` in `SmartScale/firmware/`, based on `secret_template.h`.
 
 	2.2 Fill in your Garmin account credentials and the same API key used in the backend `.env` file.
-	
+
 	2.3 Copy content of the server `certs/cert.pem` into `ROOT_CA`
 
 	> ⚠️ If the certificate doesn't work, set `SSL_INSECURE=true`. This disables certificate verification and is a **security risk** — use only at your own risk!
