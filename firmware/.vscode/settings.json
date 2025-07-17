@@ -1,0 +1,31 @@
+{
+  "files.associations": {
+	"*.embeddedhtml": "html",
+	"*.cs": "csharp",
+	"*.ino": "cpp",
+	"chrono": "cpp",
+	"array": "cpp",
+	"bitset": "cpp",
+	"string_view": "cpp",
+	"format": "cpp",
+	"initializer_list": "cpp",
+	"span": "cpp",
+	"random": "cpp",
+	"limits": "cpp",
+	"semaphore": "cpp",
+	"cmath": "cpp",
+	"sstream": "cpp",
+	"memory": "cpp",
+	"optional": "cpp",
+	"deque": "cpp",
+	"list": "cpp",
+	"string": "cpp",
+	"unordered_map": "cpp",
+	"unordered_set": "cpp",
+	"vector": "cpp",
+	"memory_resource": "cpp",
+	"executor": "cpp",
+	"io_context": "cpp",
+	"future": "cpp"
+}
+}

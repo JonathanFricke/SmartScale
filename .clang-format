@@ -1,0 +1,2 @@
+BasedOnStyle: LLVM  # or Google, Mozilla, WebKit, etc.
+ColumnLimit: 120
