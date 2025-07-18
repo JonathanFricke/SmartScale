@@ -6,39 +6,41 @@ SmartScale is a smart IoT weight scale project based on ESP32 and Flask, designe
 
 ## 🔧 Setup Instructions (Raspberry Pi or Linux)
 
-1. **Clone the repository:**
+1. **Clone the repository**
 
    ```bash
    git clone git@github.com:JonathanFricke/SmartScale.git
    cd SmartScale/backend
    ```
 
-2. **Create a virtual environment:**
+2. **Create a virtual environment**
    ```bash
    python3 -m venv .venv
    source .venv/bin/activate
    ```
 
-3. **Upgrade pip (optional but recommended):**
+3. **Upgrade pip (optional but recommended)**
 	```bash
 	pip install --upgrade pip
 	```
 
-4. **Install libraries:**
+4. **Install libraries**
 	```bash
 	pip install -r requirements.txt
 	```
 
 
-5. **Configure:**
+5. **Configure information**
 
-	5.1 Create `.env` in `SmartScale/backend/`, based on `.env_template`.
+	Create `.env` in `SmartScale/backend/`, based on `.env_template`.
 
-	5.2 Fill in your SSID, Wi-Fi password, and custom API-key.
+	Fill in your SSID, Wi-Fi password, and custom API-key.
 
-	5.3 Fill in server IP-address in `cert.conf`.
+	Fill in server IP-address in `cert.conf`.
 
-	5.3 Create TLS certificates, run the following command to generate a self-signed certificate and private key based on `cert.conf`.
+6. **Create SSL certificats**
+
+	Run the following command to generate a self-signed certificate and private key based on `cert.conf`.
 
 	```bash
 	openssl req -x509 -newkey rsa:2048 -keyout certs/key.pem -out certs/cert.pem -days 3650 -nodes -config cert.conf -extensions v3_req
@@ -46,24 +48,41 @@ SmartScale is a smart IoT weight scale project based on ESP32 and Flask, designe
 
 	>⚠️ We need `cert.pem` content later for ESP32
 
+7. **Make server scripts executable**
+
+	Enable execution for server scripts for user.
+	```bash
+	chmod u+x start_server.sh kill_server.sh restart_server.sh
+	```
+
+8. **Enable server startup on boot**
+
+	Edit crontab file.
+	```bash
+	crontab -e
+	```
+	Add the following line at the end, replacing `PATH_TO_REPO` with the full path to your cloned repository:
+	```bash
+	@reboot PATH_TO_REPO/backend/start_garmin_server.sh >> PATH_TO_REPO/backend/cron_log.txt 2>&1 &
+	```
 
 ## 📟 Setup Instructions (ESP32)
 This is a firmware project for [PlatformIO](https://platformio.org/), designed for embedded development on microcontrollers such as ESP32, Arduino, STM32, etc.
 
-1. **Clone the repository:**
+1. **Clone the repository**
 
    ```bash
    git clone git@github.com:JonathanFricke/SmartScale.git
    cd SmartScale/firmware
    ```
 
-2. **Configure:**
+2. **Configure**
 
-	2.1 Create `secret.h` in `SmartScale/firmware/`, based on `secret_template.h`.
+	Create `secret.h` in `SmartScale/firmware/`, based on `secret_template.h`.
 
-	2.2 Fill in your Garmin account credentials and the same API key used in the backend `.env` file.
+	Fill in your Garmin account credentials and the same API key used in the backend `.env` file.
 
-	2.3 Copy content of the server `certs/cert.pem` with linebreaks `\n` into `ROOT_CA`
+	Copy content of the server `certs/cert.pem` with linebreaks `\n` into `ROOT_CA`
 
 	Example:
 	```bash
@@ -97,7 +116,7 @@ This is a firmware project for [PlatformIO](https://platformio.org/), designed f
 ## 🚀 Running the System
 1. **ESP32 will run automatically when powered on.**
 
-2. **Server managed with bash scripts:**
+2. **Server managed with bash scripts**
 
 	```bash
 	cd SmartScale/backend
@@ -131,7 +150,7 @@ This is a firmware project for [PlatformIO](https://platformio.org/), designed f
    Download and install from:
    https://www.anaconda.com/docs/getting-started/miniconda/install
 
-2. **Create and activate a new Conda environment:**
+2. **Create and activate a new Conda environment**
 
    ```bash
    conda create -n smartscale python=3 pip
