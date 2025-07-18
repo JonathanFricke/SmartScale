@@ -48,14 +48,14 @@ SmartScale is a smart IoT weight scale project based on ESP32 and Flask, designe
 
 	>⚠️ We need `cert.pem` content later for ESP32
 
-7. **Make server scripts executable**
+<!-- 7. **Make server scripts executable**
 
 	Enable execution for server scripts for user.
 	```bash
 	chmod u+x start_server.sh kill_server.sh restart_server.sh
-	```
+	``` -->
 
-8. **Enable server startup on boot**
+7. **Enable server startup on boot**
 
 	Edit crontab file.
 	```bash
