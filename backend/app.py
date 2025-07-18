@@ -1,8 +1,11 @@
-from flask import Flask, request, jsonify
-import garminconnect
+import json
 import os
 from datetime import datetime
-import json
+
+import garminconnect
+from flask import Flask
+from flask import jsonify
+from flask import request
 
 app = Flask(__name__)
 
