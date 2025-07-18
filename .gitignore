@@ -5,6 +5,7 @@
 **/.vscode/ipch
 **/.vscode/extensions.json
 
+draft_media/*
 
 *secret*
 # *.log

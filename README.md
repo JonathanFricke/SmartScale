@@ -2,6 +2,8 @@
 
 SmartScale is a smart IoT weight scale project based on ESP32 and Flask, designed to collect and store weight in Garmin account.
 
+![SmartScale](docs\images\scale_breadboard.jpg)
+
 ---
 
 ## 🔧 Setup Instructions (Raspberry Pi or Linux)
