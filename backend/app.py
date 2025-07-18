@@ -12,23 +12,6 @@ def index():
     return "<h2>Available<h2>"
 
 
-def display_json(api_call, output):
-    """Format API output for better readability."""
-
-    dashed = "-" * 20
-    header = f"{dashed} {api_call} {dashed}"
-    footer = "-" * len(header)
-
-    print(header)
-
-    if isinstance(output, (int, str, dict, list)):
-        print(json.dumps(output, indent=4))
-    else:
-        print(output)
-
-    print(footer)
-
-
 @app.route("/add_weight", methods=["POST"])
 def add_weight():
     API_key = os.environ.get("API_KEY")
@@ -39,8 +22,6 @@ def add_weight():
         print(f"key: {key}")
         print(f"API_key: {API_key}")
         return "no authentication"
-
-    # return "success"
 
     data = request.json
     email = os.environ.get("GARMIN_EMAIL")
@@ -76,12 +57,10 @@ def add_weight():
         # add_weight = garmin.add_weigh_in(weight=weight, unitKey=unit, timestamp=dt_local.isoformat(timespec="microseconds"))
         add_weight = garmin.add_weigh_in(weight=weight, unitKey=unit, timestamp=now)
         display_json(f"api.add_weigh_in(weight={weight}, unitKey={unit})", add_weight)
-        # return "Success"
         return jsonify({"status": "success"}), 200  # <-- Explicit success
 
     except Exception as e:
         print(e)
-        # return "Fail"
         return jsonify({"status": "fail", "error": str(e)}), 500  # <-- Explicit failure
 
 
@@ -93,8 +72,6 @@ def get_weight():
 
     if key != API_key:
         return "no authentication"
-
-    # return "80.2"
 
     try:
         email = os.environ.get("GARMIN_EMAIL")
@@ -114,6 +91,23 @@ def get_weight():
     except Exception as e:
         print(e)
         return "Fail"
+
+
+def display_json(api_call, output):
+    """Format API output for better readability."""
+
+    dashed = "-" * 20
+    header = f"{dashed} {api_call} {dashed}"
+    footer = "-" * len(header)
+
+    print(header)
+
+    if isinstance(output, (int, str, dict, list)):
+        print(json.dumps(output, indent=4))
+    else:
+        print(output)
+
+    print(footer)
 
 
 if __name__ == "__main__":
