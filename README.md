@@ -155,7 +155,7 @@ This is a firmware project for [PlatformIO](https://platformio.org/), designed f
 2. **Create and activate a new Conda environment**
 
    ```bash
-   conda create -n smartscale python=3 pip
+   conda create -n smartscale python=3.12 pip
    conda activate smartscale -->
 
 
