@@ -118,8 +118,10 @@ void InternetClient::postWeightTask(void *param) {
     String response = httpClient.responseBody();
     Serial.println(response);
 
-    if (statusCode == 200 || response.indexOf("\"status\":\"success\"") != -1)
+    if (response.indexOf("\"status\":\"success\"") != -1) {
+      statusCode = 200;
       break; // Success
+    }
 
     if (statusCode < 0) {
       Serial.print("HTTP POST failed with error: ");
