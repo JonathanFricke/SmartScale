@@ -1,4 +1,6 @@
 # ⚖️ SmartScale
+[![pre-commit](https://github.com/JonathanFricke/SmartScale/actions/workflows/pre-commit.yaml/badge.svg?branch=dev)](https://github.com/JonathanFricke/SmartScale/actions/workflows/pre-commit.yaml)
+[![build](https://github.com/JonathanFricke/SmartScale/actions/workflows/build.yaml/badge.svg?branch=dev)](https://github.com/JonathanFricke/SmartScale/actions/workflows/build.yaml)
 
 SmartScale is a smart IoT weight scale project based on ESP32 and Flask, designed to collect and store weight in Garmin account.
 
